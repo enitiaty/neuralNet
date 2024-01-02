@@ -38,7 +38,7 @@ public class layer_dense {
     System.out.println(input.toString());
     System.out.println(weights.toString());
     output = matrix.multiplyMatrix(input, weights);
-    output.addMatrix(bias);
+    output.matAddVector(bias);
   }
 
   public matrix getOutput(){

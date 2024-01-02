@@ -45,16 +45,24 @@ public class matrix {
     }
   }
   
-  public void addVector(vector a){
-    for (int i = 0; i < a.getWidth(); i++){
-      for (int j = 0; j < a.getHeight(); j++){
-        mat[i][j]+=a.getVal(0, j);
+  public void matAddVector(vector a){
+    for (int i = 0; i < width; i++){
+      for (int j = 0; j < height; j++){
+        mat[i][j]+=a.getVal(j);
       }
     }  
   }
 
   public vector toVector(){
     return new vector(mat[0]);
+  }
+
+  public void multiplyScalar(float scalar){
+    for (int i = 0; i < width; i++){
+      for (int j = 0; j < height; j++){
+        mat[i][j]*=scalar;
+      }
+    }
   }
   
   @Override
@@ -64,6 +72,16 @@ public class matrix {
       output+=Arrays.toString(mat[i])+"\n";
     }
     return output;
+  }
+
+  public static matrix scalarMultiply(float scalar, matrix a){
+    matrix c = new matrix(a.convertToArray());
+    for (int i = 0; i < a.getWidth(); i++){
+      for (int j = 0; j < a.getHeight(); j++){
+        c.setVal(c.getVal(i, j)*scalar, i, j);
+      }
+    }
+    return c;
   }
 
   public static matrix multiplyMatrix(matrix a, matrix b){
@@ -84,6 +102,12 @@ public class matrix {
     }
 
     return ret;
+  }
+  
+  public static matrix matrixSum(matrix a, matrix b){
+    matrix c = new matrix(a.convertToArray());
+    c.addMatrix(b);
+    return c;
   }
 
   public static matrix transpose(matrix a){
