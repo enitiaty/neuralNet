@@ -7,4 +7,12 @@ public class vector extends matrix {
   public vector(float[] d){
     super(new float[][]{d});
   }
+
+  public float getVal(int index){
+    return mat[0][index];
+  }
+
+  public float[] convertVToArray(){
+    return mat[0];
+  }
 }

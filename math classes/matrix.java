@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class matrix {
   private int width;
   private int height;
-  private float[][] mat; //actual matrix
+  protected float[][] mat; //actual matrix
 
   public matrix(int w, int h){
     width = w;
