@@ -1,4 +1,4 @@
-public class oneHot extends vector {
+public class oneHot extends rowVector {
 
   public oneHot(int value){
     super(10);

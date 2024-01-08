@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 public class matrix {
-  private int width;
-  private int height;
+  protected int width;
+  protected int height;
   protected float[][] mat; //actual matrix
 
   public matrix(int w, int h){
@@ -15,6 +15,10 @@ public class matrix {
     mat=d.clone();
     width=mat.length;
     height=mat[0].length;
+  }
+
+  public void printDims(){
+    System.out.println(""+width+"x"+height);;
   }
 
   public int getWidth(){
@@ -45,7 +49,7 @@ public class matrix {
     }
   }
   
-  public void matAddVector(vector a){
+  public void matAddRowVector(rowVector a){
     for (int i = 0; i < width; i++){
       for (int j = 0; j < height; j++){
         mat[i][j]+=a.getVal(j);
@@ -53,8 +57,20 @@ public class matrix {
     }  
   }
 
-  public vector toVector(){
-    return new vector(mat[0]);
+  public void matAddColVector(colVector a){
+    for (int i = 0; i < width; i++){
+      for (int j = 0; j < height; j++){
+        mat[j][i]+=a.getVal(j);
+      }
+    }  
+  }
+
+  public rowVector toRowVector(){
+    return new rowVector(mat[0]);
+  }
+
+  public colVector toColVector(){
+    return new colVector(matrix.transpose(new matrix(mat)).convertToArray()[0]);
   }
 
   public void multiplyScalar(float scalar){
