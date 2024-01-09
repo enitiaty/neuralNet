@@ -1,10 +1,10 @@
-public class vector extends matrix {
+public class rowVector extends matrix {
   
-  public vector(int d){
+  public rowVector(int d){
     super(1, d);
   }
 
-  public vector(float[] d){
+  public rowVector(float[] d){
     super(new float[][]{d});
   }
 
@@ -16,12 +16,12 @@ public class vector extends matrix {
     mat[0][index]=val;
   }
 
-  public float[] convertVToArray(){
+  public float[] convertRVToArray(){
     return mat[0];
   }
 
-  public static vector vectorSum(vector a, vector b){
-    vector c = new vector(a.convertVToArray());
+  public static rowVector rowVectorSum(rowVector a, rowVector b){
+    rowVector c = new rowVector(a.convertRVToArray());
     for (int i = 0; i < a.getHeight(); i++){
       c.setVal(a.getVal(i)+b.getVal(i), i);
     }
