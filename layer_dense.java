@@ -27,6 +27,10 @@ public class layer_dense {
     return weights;
   }
 
+  public rowVector getBias(){
+    return bias;
+  }
+
   // public void forward(rowVector input){
   //   System.out.println(input.toString());
   //   System.out.println(weights.toString());
@@ -34,6 +38,8 @@ public class layer_dense {
   //   out.addMatrix(biases);
   //   output=out.torowVector();
   // }
+
+
 
   public void forward(matrix input){
     inputs=input;
@@ -50,6 +56,7 @@ public class layer_dense {
   public matrix derivativeWrtWeight(){
     return matrix.transpose(inputs);
   }
+
   
 
 }

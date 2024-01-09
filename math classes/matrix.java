@@ -138,5 +138,18 @@ public class matrix {
     return ret;
   }
 
+  public static matrix hadProd(matrix a, matrix b){
+    if (a.getHeight()-b.getHeight()+a.getWidth()-b.getWidth()!=0){
+      throw new RuntimeException("dimension mismatch");
+    }
+    matrix out = new matrix(a.getWidth(), a.getHeight());
+    for (int i = 0; i < a.getWidth(); i++){
+      for (int j = 0; j < a.getHeight(); j++){
+        out.setVal(a.getVal(i, j)*b.getVal(i, j), i, j);
+      }
+    }
+    return out;
+  }
+
 
 }
