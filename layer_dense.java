@@ -3,8 +3,9 @@ import java.lang.Math;
 
 public class layer_dense {
   private matrix weights;
-  private vector bias;
+  private rowVector bias;
   private matrix output;
+  private matrix inputs;
 
   public layer_dense(int inputCount, int neuronCount){
 
@@ -19,31 +20,43 @@ public class layer_dense {
     }
 
     weights = new matrix(w);
-    bias = new vector(b);
+    bias = new rowVector(b);
   }
 
   public matrix getWeights(){
     return weights;
   }
 
-  // public void forward(vector input){
+  public rowVector getBias(){
+    return bias;
+  }
+
+  // public void forward(rowVector input){
   //   System.out.println(input.toString());
   //   System.out.println(weights.toString());
   //   matrix out = matrix.multiplyMatrix(input, weights);
   //   out.addMatrix(biases);
-  //   output=out.toVector();
+  //   output=out.torowVector();
   // }
 
+
+
   public void forward(matrix input){
-    System.out.println(input.toString());
-    System.out.println(weights.toString());
+    inputs=input;
+    // System.out.println(input.toString());
+    // System.out.println(weights.toString());
     output = matrix.multiplyMatrix(input, weights);
-    output.matAddVector(bias);
+    output.matAddRowVector(bias);
   }
 
   public matrix getOutput(){
     return output;
   }
+
+  public matrix derivativeWrtWeight(){
+    return matrix.transpose(inputs);
+  }
+
   
 
 }
