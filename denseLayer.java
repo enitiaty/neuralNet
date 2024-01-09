@@ -1,13 +1,13 @@
 import java.lang.Math;
 
 
-public class layer_dense {
+public class denseLayer {
   private matrix weights;
   private rowVector bias;
   private matrix output;
   private matrix inputs;
 
-  public layer_dense(int inputCount, int neuronCount){
+  public denseLayer(int inputCount, int neuronCount){
 
     float[][] w = new float[inputCount][neuronCount];
     float[] b = new float[neuronCount];
@@ -19,6 +19,11 @@ public class layer_dense {
       }
     }
 
+    weights = new matrix(w);
+    bias = new rowVector(b);
+  }
+
+  public denseLayer(float[][] w, float[] b){
     weights = new matrix(w);
     bias = new rowVector(b);
   }
@@ -40,18 +45,18 @@ public class layer_dense {
   // }
 
 
+  public matrix getOutput(){
+    return output;
+  }
 
   public void forward(matrix input){
-    inputs=input;
+    inputs=new matrix(input.convertToArray());
     // System.out.println(input.toString());
     // System.out.println(weights.toString());
     output = matrix.multiplyMatrix(input, weights);
     output.matAddRowVector(bias);
   }
 
-  public matrix getOutput(){
-    return output;
-  }
 
   public matrix derivativeWrtWeight(){
     return matrix.transpose(inputs);
