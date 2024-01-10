@@ -38,5 +38,13 @@ public class utilities {
     if (i==j) return 1;
     return 0;
   }
+
+  public static float[] convertStrToFloatArr(String[] input){
+    float[] out = new float[input.length];
+    for (int i = 0; i < input.length; i++){
+      out[i]=Float.parseFloat(input[i]);
+    }
+    return out;
+  }
   
 }
