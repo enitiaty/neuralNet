@@ -9,9 +9,9 @@ import java.util.Arrays;
 
 public class fileIO {
 
-  public static void dumpData(matrix[] weights, rowVector[] biases){
+  public static void dumpData(matrix[] weights, rowVector[] biases, String weightPath, String biasPath){
     try{
-      FileWriter fw = new FileWriter(".\\permFileLocs\\weights.txt");
+      FileWriter fw = new FileWriter(weightPath);
       PrintWriter pw = new PrintWriter(fw);
       for (matrix i: weights){
         pw.write(i.toString()+"\n");
@@ -22,7 +22,7 @@ public class fileIO {
       System.out.println("error: "+e);
     }
     try{
-      FileWriter fw = new FileWriter(".\\permFileLocs\\biases.txt");
+      FileWriter fw = new FileWriter(biasPath);
       PrintWriter pw = new PrintWriter(fw);
       for (rowVector i: biases){
         pw.write(i.toString());
@@ -91,30 +91,47 @@ public class fileIO {
     return out;
   }
 
-  public static pair[] readTrainingData(int batchSize, String pathToFile){
+  public static pair[] readTrainingData(int batchSize, String pathToFile, int lineLim){
     if (10000%batchSize!=0) throw new RuntimeException("batch error");
     ArrayList<pair> out = new ArrayList<pair>();//matrix, matrix
     ArrayList<Integer> oH = new ArrayList<Integer>();
     ArrayList<float[]> fls = new ArrayList<float[]>();
     float[] temp = new float[769];
+    int count = 0;
     try {
       FileReader fr = new FileReader(pathToFile);
       BufferedReader br = new BufferedReader(fr);
       String c;
       while (true){
         c=br.readLine();
-        if (c.equals("f")) break;
-        temp = utilities.convertStrToFloatArr(c.substring(1, c.length()-1).split(","));
+        if (c.equals("f")||count==lineLim) break;
+        temp = utilities.convertStrToFloatArr(c.split(","));
+
 
         
         oH.add((int)temp[0]);
         fls.add(Arrays.copyOfRange(temp, 1, temp.length));
-        br.close();
+        count++;
       }
+      br.close();
     } catch (Exception e) {
       System.out.println("exception "+e);
     } 
-    return null; //69
+    int[] oHA = new int[oH.size()];
+    for (int i = 0; i < oH.size(); i++) oHA[i]=oH.get(i);
+    float[][] flA = new float[fls.size()][768];
+    for (int i = 0; i < fls.size(); i++) flA[i]=fls.get(i);
+    lineLim=Math.max(lineLim, oH.size());
+    for (int i = 0; i < lineLim/batchSize; i++){
+      out.add(
+        new pair(
+          new oneHotMatrix(batchSize, Arrays.copyOfRange(oHA, i*batchSize, i*batchSize+batchSize)), 
+          new matrix(Arrays.copyOfRange(flA, i*batchSize, i*batchSize+batchSize)))
+      ); 
+    }
+    pair[] o = new pair[out.size()];
+    for (int i = 0; i < out.size(); i++) o[i]=out.get(i);
+    return o; //69
   }
 
 }

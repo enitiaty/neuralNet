@@ -6,6 +6,8 @@ public class layerDerivs {
     l1=j;
     l2=k;
   }
+  public void updateL1(denseLayer i){l1=i;}
+  public void updateL2(denseLayer i){l2=i;}
 
   public void setTruth(oneHotMatrix t){
     truth=t;

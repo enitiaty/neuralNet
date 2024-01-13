@@ -36,6 +36,13 @@ public class denseLayer {
     return bias;
   }
 
+  public void setWeights(matrix w){
+    weights=w;
+  }
+  public void setBias(rowVector b){
+    bias=b;
+  }
+
   // public void forward(rowVector input){
   //   System.out.println(input.toString());
   //   System.out.println(weights.toString());
