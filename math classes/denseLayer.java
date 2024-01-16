@@ -15,7 +15,7 @@ public class denseLayer {
     for (int i = 0; i < inputCount; i++){
       for (int j = 0; j < neuronCount; j++){
         w[i][j]=(float)(Math.random()*2-1);
-        b[j]=0;
+        b[j]=(float)(Math.random()*2-1);
       }
     }
 
@@ -26,6 +26,10 @@ public class denseLayer {
   public denseLayer(float[][] w, float[] b){
     weights = new matrix(w);
     bias = new rowVector(b);
+  }
+  public denseLayer(matrix w, rowVector b){
+    weights=w;
+    bias=b;
   }
 
   public matrix getWeights(){
@@ -51,17 +55,22 @@ public class denseLayer {
   //   output=out.torowVector();
   // }
 
-
+  public matrix calculateOut(matrix input){
+    matrix a = matrix.multiplyMatrix(input, weights);
+    a.matAddRowVector(bias);
+    return a;
+  }
   public matrix getOutput(){
     return output;
   }
 
   public void forward(matrix input){
     inputs=new matrix(input.convertToArray());
+    matrix a = matrix.multiplyMatrix(input, weights);
+    a.matAddRowVector(new rowVector(bias.convertToArray()[0]));
     // System.out.println(input.toString());
     // System.out.println(weights.toString());
-    output = matrix.multiplyMatrix(input, weights);
-    output.matAddRowVector(bias);
+    output = a;
   }
 
 

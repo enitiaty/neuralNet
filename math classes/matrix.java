@@ -4,6 +4,7 @@ public class matrix {
   protected int width;
   protected int height;
   protected float[][] mat; // actual matrix
+  public static long debugCount=0;
 
   public matrix(int w, int h) {
     width = w;
@@ -39,7 +40,11 @@ public class matrix {
   }
 
   public float[][] convertToArray() {
-    return mat;
+    float[][] out = new float[mat.length][mat[0].length];
+    for (int i = 0; i < mat.length; i++){
+      out[i]=mat[i].clone();
+    }
+    return out;
   }
 
   public void addMatrix(matrix a) {
@@ -106,7 +111,7 @@ public class matrix {
 
   public static matrix multiplyMatrix(matrix a, matrix b) {
     if (a.getHeight() != b.getWidth()) {
-      throw new RuntimeException("size mismatch");
+      throw new RuntimeException("size mismatch "+a.getWidth()+"x"+a.getHeight()+","+b.getWidth()+"x"+b.getHeight());
     }
 
     matrix ret = new matrix(a.getWidth(), b.getHeight());
@@ -116,6 +121,7 @@ public class matrix {
         float temp = 0;
         for (int k = 0; k < a.getHeight(); k++) {
           temp += a.getVal(i, k) * b.getVal(k, j);
+          debugCount++;
         }
         ret.setVal(temp, i, j);
       }
@@ -154,5 +160,17 @@ public class matrix {
     }
     return out;
   }
-
+  
+  public static matrix hadDiv(matrix a, matrix b) {
+    if (a.getHeight() - b.getHeight() + a.getWidth() - b.getWidth() != 0) {
+      throw new RuntimeException("dimension mismatch "+a.getWidth()+"x"+a.getHeight()+","+b.getWidth()+"x"+b.getHeight());
+    }
+    matrix out = new matrix(a.getWidth(), a.getHeight());
+    for (int i = 0; i < a.getWidth(); i++) {
+      for (int j = 0; j < a.getHeight(); j++) {
+        out.setVal(a.getVal(i, j) / b.getVal(i, j), i, j);
+      }
+    }
+    return out;
+  }
 }

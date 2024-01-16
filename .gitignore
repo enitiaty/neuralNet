@@ -1,6 +1,5 @@
 .vscode
-test.java
-test2.java
 notes.md
 nextsteps.txt
 permFileLocs/
+test*.java

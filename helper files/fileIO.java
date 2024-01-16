@@ -34,10 +34,10 @@ public class fileIO {
     }
   }
 
-  public static matrix[] readWeights(){
+  public static matrix[] readWeights(String path){
     matrix[] out = new matrix[2];
     try {
-      FileReader fr = new FileReader(".\\permFileLocs\\weights.txt");
+      FileReader fr = new FileReader(path);
       BufferedReader br = new BufferedReader(fr);
       String temp;
 
@@ -75,10 +75,10 @@ public class fileIO {
     return out;
   }
   
-  public static rowVector[] readBiases(){
+  public static rowVector[] readBiases(String path){
     rowVector[] out = new rowVector[2];
     try {
-      FileReader fr = new FileReader(".\\permFileLocs\\biases.txt");
+      FileReader fr = new FileReader(path);
       BufferedReader br = new BufferedReader(fr);
       String c=br.readLine();
       out[0]=new rowVector(utilities.convertStrToFloatArr(c.substring(1, c.length()-1).split(",")));

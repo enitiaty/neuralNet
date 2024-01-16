@@ -22,7 +22,13 @@ public class layerDerivs {
   }
 
   public matrix l2WrtWeight(){
-    return matrix.multiplyMatrix(l2.derivativeWrtWeight(), lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth));
+    // lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth).printDims();
+    // l2.derivativeWrtWeight().printDims();
+    // l1.getOutput().printDims();
+    // ReLU.forward(l1.getOutput()).printDims();
+    return matrix.multiplyMatrix(matrix.transpose(ReLU.forward(l1.getOutput())),
+    lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth));
+    // return matrix.multiplyMatrix(l2.derivativeWrtWeight(), lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth));
   }
 
   public rowVector l2WrtBias(){

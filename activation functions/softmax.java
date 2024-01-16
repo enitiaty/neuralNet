@@ -7,12 +7,13 @@ public class softmax implements activations {
     int m = inputs.getWidth();
     int n = inputs.getHeight();
     float[] total = new float[m];
+    float highest;
 
     for (int i = 0; i < m; i++){
       float tempTot=0;
-      float highest=utilities.maxArr(out.convertToArray()[i]);
+      highest=utilities.maxArr(out.convertToArray()[i]);
       for (int j = 0; j < n; j++){
-        float temp = (float)Math.exp(out.getVal(i, j)/highest);
+        float temp = (float)Math.exp(out.getVal(i, j)-highest);
         out.setVal(temp, i, j);
         tempTot+=temp;
       }
