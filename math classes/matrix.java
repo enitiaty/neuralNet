@@ -75,7 +75,7 @@ public class matrix {
   }
 
   public rowVector toRowVector() {
-    return new rowVector(mat[0]);
+    return new rowVector(utilities.sumCols(mat));
   }
 
   public colVector toColVector() {

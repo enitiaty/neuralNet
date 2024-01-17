@@ -33,9 +33,9 @@ public class modelTesting {
   }
 
   public static void main(String[] args) {
-    modelTesting model = new modelTesting(".\\permFileLocs\\w1.txt", ".\\permFileLocs\\b1.txt");
+    modelTesting model = new modelTesting(".\\permFileLocs\\w2.txt", ".\\permFileLocs\\b2.txt");
     final int BATCHSIZE = 50;
-    pair[] data = fileIO.readTrainingData(BATCHSIZE, ".\\permFileLocs\\mnist_train.csv", -1);
+    pair[] data = fileIO.readTrainingData(BATCHSIZE, ".\\permFileLocs\\mnist_test.csv", -1);
     int c = 0;
     int l=0;
     for (pair i: data){
@@ -44,7 +44,9 @@ public class modelTesting {
       matrix d = i.getsecond();
       float[][] o = model.test(d).convertToArray();
       for (int j = 0; j < BATCHSIZE; j++){
-        System.out.println(Arrays.toString(o[j]));
+        // System.out.println(Arrays.toString(t[j]));
+        // System.out.println(Arrays.toString(o[j]));
+        // System.out.println();
         // System.out.println(utilities.find(o[j], utilities.maxArr(o[j])));
         // System.out.println(utilities.find(t[j], 1));
         

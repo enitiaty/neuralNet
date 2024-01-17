@@ -92,7 +92,6 @@ public class fileIO {
   }
 
   public static pair[] readTrainingData(int batchSize, String pathToFile, int lineLim){
-    if (10000%batchSize!=0) throw new RuntimeException("batch error");
     ArrayList<pair> out = new ArrayList<pair>();//matrix, matrix
     ArrayList<Integer> oH = new ArrayList<Integer>();
     ArrayList<float[]> fls = new ArrayList<float[]>();
@@ -122,6 +121,7 @@ public class fileIO {
     float[][] flA = new float[fls.size()][768];
     for (int i = 0; i < fls.size(); i++) flA[i]=fls.get(i);
     lineLim=Math.max(lineLim, oH.size());
+    if (lineLim%batchSize!=0||oH.size()%batchSize!=0){throw new RuntimeException("batch error");}
     for (int i = 0; i < lineLim/batchSize; i++){
       out.add(
         new pair(
@@ -132,6 +132,19 @@ public class fileIO {
     pair[] o = new pair[out.size()];
     for (int i = 0; i < out.size(); i++) o[i]=out.get(i);
     return o; //69
+  }
+
+  public static void writeCoords(float[][] a){
+    try {
+      FileWriter fw = new FileWriter(".\\permFileLocs\\coords.txt");
+      PrintWriter pw = new PrintWriter(fw);
+      for (float[] i:a){
+        pw.print("("+i[0]+","+i[1]+"),");
+      }
+      pw.close();
+    } catch (IOException e) {
+      System.out.println(e);
+    }
   }
 
 }

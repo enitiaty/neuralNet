@@ -1,5 +1,7 @@
 .vscode
 notes.md
 nextsteps.txt
-permFileLocs/
+permFileLocs/*
+!permFileLocs/*FINAL.txt
+!permFileLocs/*.py
 test*.java

@@ -26,15 +26,15 @@ public class layerDerivs {
     // l2.derivativeWrtWeight().printDims();
     // l1.getOutput().printDims();
     // ReLU.forward(l1.getOutput()).printDims();
+    // System.out.println(ReLU.forward(l1.getOutput()));
+    // System.out.println(lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth));
     return matrix.multiplyMatrix(matrix.transpose(ReLU.forward(l1.getOutput())),
     lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth));
     // return matrix.multiplyMatrix(l2.derivativeWrtWeight(), lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth));
   }
 
-  public rowVector l2WrtBias(){
-    int dim = l2.getWeights().getHeight();
-    identity I = new identity(dim);
-    return matrix.multiplyMatrix(lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth), I).toRowVector();
+  public rowVector l2WrtBias(){    
+    return lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth).toRowVector();
   }
 
 }

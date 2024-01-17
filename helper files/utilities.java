@@ -22,6 +22,21 @@ public class utilities {
     return sum;
   }
 
+  public static float[] sumCols(float[][] inputs){
+    float[] out = new float[inputs[0].length];
+    for (int i = 0; i < inputs.length; i++){
+      for (int j = 0; j < inputs[i].length; j++){
+        out[j]+=inputs[i][j];
+      }
+    }
+    return out;
+  }
+  
+  public static float[] sumCols(matrix inputs){
+    return utilities.sumCols(inputs.convertToArray());
+  }
+
+
   public static int find(float[] arr, float arg){
     for(int i = 0; i < arr.length; i++){
       if (arr[i]==arg){return i;}

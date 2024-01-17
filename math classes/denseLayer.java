@@ -15,7 +15,6 @@ public class denseLayer {
     for (int i = 0; i < inputCount; i++){
       for (int j = 0; j < neuronCount; j++){
         w[i][j]=(float)(Math.random()*2-1);
-        b[j]=(float)(Math.random()*2-1);
       }
     }
 

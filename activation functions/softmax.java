@@ -1,4 +1,5 @@
 import java.lang.Math;
+import java.util.Arrays;
 
 public class softmax implements activations {
   
@@ -20,6 +21,8 @@ public class softmax implements activations {
       total[i]=tempTot;
     }
     for (int i = 0; i < m; i++){
+      // System.out.println(Arrays.toString(out.convertToArray()[i]));
+      // System.out.println(total[i]);
       for (int j = 0; j < n; j++){
         out.setVal(out.getVal(i, j)/total[i], i, j);
       }
