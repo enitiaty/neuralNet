@@ -3,5 +3,6 @@ notes.md
 nextsteps.txt
 permFileLocs/*
 !permFileLocs/*FINAL.txt
-!permFileLocs/*.py
+datasets/*
+!datasets/*.py
 test*.java
