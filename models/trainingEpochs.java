@@ -2,27 +2,27 @@ public class trainingEpochs {
   public static matrix o;
   public static void main(String[] args) {
     final float ETA = -0.02f;
-    final int BATCHSIZE = 50;
-    final int EPOCHCOUNT = 1;
+    final int BATCHSIZE = 1;
+    final int EPOCHCOUNT = 5;
     randomScalarTransform t = new randomScalarTransform(BATCHSIZE);
     final matrix TRANSFORMATION = t.returnTransform();
-    denseLayer l1 = new denseLayer(784, 800);
-    denseLayer l2 = new denseLayer(800, 10);
-    // matrix[] a = fileIO.readWeights(".\\permFileLocs\\w1.txt");
-    // rowVector[] b = fileIO.readBiases(".\\permFileLocs\\b1.txt");
-    // denseLayer l1 = new denseLayer(a[0], b[0]);
-    // denseLayer l2 = new denseLayer(a[1], b[1]);
+    // denseLayer l1 = new denseLayer(784, 800);
+    // denseLayer l2 = new denseLayer(800, 10);
+    matrix[] a = fileIO.readWeights(".\\permFileLocs\\w_FINAL_copy.txt");
+    rowVector[] b = fileIO.readBiases(".\\permFileLocs\\b_FINAL_copy.txt");
+    denseLayer l1 = new denseLayer(a[0], b[0]);
+    denseLayer l2 = new denseLayer(a[1], b[1]);
     layerDerivs del = new layerDerivs(l1, l2);
     int count = 0;
 
     
-    pair[] data = fileIO.readTrainingData(BATCHSIZE, ".\\datasets\\mnist_trainALLSCALEDDOWN.csv", -1);
+    pair<oneHotMatrix, matrix>[] data = fileIO.readTrainingData(BATCHSIZE, ".\\datasets\\user.csv", -1);
     float[][] coords = new float[data.length*EPOCHCOUNT][2];
 
 
     for (int l = 0; l < EPOCHCOUNT; l++){
 
-      for (pair i:data){
+      for (pair<oneHotMatrix, matrix> i:data){
         
         count++;
         del.updateL1(l1);
@@ -79,7 +79,7 @@ public class trainingEpochs {
     fileIO.dumpData(
     new matrix[] {l1.getWeights(), l2.getWeights()}, 
     new rowVector[] {l1.getBias(), l2.getBias()},
-    ".\\permFileLocs\\w_HORIZONTAL.txt", ".\\permFileLocs\\b_HORIZONTAL.txt");
+    ".\\permFileLocs\\w_FINAL_copy.txt", ".\\permFileLocs\\b_FINAL_copy.txt");
     // ".\\permFileLocs\\w"+(l%2+2)+".txt", ".\\permFileLocs\\b"+(l%2+2)+".txt");
     //l2.derivativeWrtWeight(), lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth)
     // System.out.println(matrix.scalarMultiply(1, del.l2WrtWeight()));

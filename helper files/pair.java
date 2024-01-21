@@ -1,9 +1,16 @@
-public class pair {
+public class pair<E, F> {
   public Object[] obj = new Object[2];
-  public pair(oneHotMatrix o1, matrix o2){
+  public pair(Object o1, Object o2){
     obj[0]=o1;
     obj[1]=o2;
   }
-  public oneHotMatrix getfirst() {return (oneHotMatrix)obj[0];}
-  public matrix getsecond() {return (matrix)obj[1];}
+  @SuppressWarnings("unchecked")
+  public E getfirst(){return (E)obj[0];}
+  @SuppressWarnings("unchecked")
+  public F getsecond(){return (F)obj[1];}
+  @Override
+  @SuppressWarnings("unchecked")
+  public String toString(){
+    return "("+(E)obj[0]+", "+(F)obj[1]+")";
+  }
 }

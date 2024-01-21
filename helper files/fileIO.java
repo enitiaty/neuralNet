@@ -91,8 +91,8 @@ public class fileIO {
     return out;
   }
 
-  public static pair[] readTrainingData(int batchSize, String pathToFile, int lineLim){
-    ArrayList<pair> out = new ArrayList<pair>();//matrix, matrix
+  public static pair<oneHotMatrix, matrix>[] readTrainingData(int batchSize, String pathToFile, int lineLim){
+    ArrayList<pair<oneHotMatrix, matrix>> out = new ArrayList<pair<oneHotMatrix, matrix>>();//matrix, matrix
     ArrayList<Integer> oH = new ArrayList<Integer>();
     ArrayList<float[]> fls = new ArrayList<float[]>();
     float[] temp = new float[769];
@@ -124,12 +124,12 @@ public class fileIO {
     if (lineLim%batchSize!=0||oH.size()%batchSize!=0){throw new RuntimeException("batch error");}
     for (int i = 0; i < lineLim/batchSize; i++){
       out.add(
-        new pair(
+        new pair<oneHotMatrix, matrix>(
           new oneHotMatrix(batchSize, Arrays.copyOfRange(oHA, i*batchSize, i*batchSize+batchSize)), 
           new matrix(Arrays.copyOfRange(flA, i*batchSize, i*batchSize+batchSize)))
       ); 
     }
-    pair[] o = new pair[out.size()];
+    pair<oneHotMatrix, matrix>[] o = new pair[out.size()];
     for (int i = 0; i < out.size(); i++) o[i]=out.get(i);
     return o; //69
   }
@@ -145,6 +145,18 @@ public class fileIO {
     } catch (IOException e) {
       System.out.println(e);
     }
+  }
+
+  public static void writeTestCase(String correctNum, Float[] data){
+    try {
+      FileWriter fw = new FileWriter(".\\datasets\\user.csv", true);
+      PrintWriter pw = new PrintWriter(fw);
+      pw.print("\n"+correctNum+","+utilities.convertToCSV(data));
+      pw.close();
+    } catch (IOException e) {
+      System.out.println(e);
+    }
+    
   }
 
 }

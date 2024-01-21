@@ -6,12 +6,12 @@ public class trainingMultiFiles {
     final int EPOCHCOUNT = 1;
     randomScalarTransform t = new randomScalarTransform(BATCHSIZE);
     final matrix TRANSFORMATION = t.returnTransform();
-    denseLayer l1 = new denseLayer(784, 800);
-    denseLayer l2 = new denseLayer(800, 10);
-    // matrix[] a = fileIO.readWeights(".\\permFileLocs\\w1.txt");
-    // rowVector[] b = fileIO.readBiases(".\\permFileLocs\\b1.txt");
-    // denseLayer l1 = new denseLayer(a[0], b[0]);
-    // denseLayer l2 = new denseLayer(a[1], b[1]);
+    // denseLayer l1 = new denseLayer(784, 800);
+    // denseLayer l2 = new denseLayer(800, 10);
+    matrix[] a = fileIO.readWeights(".\\permFileLocs\\W_FINAL.txt");
+    rowVector[] b = fileIO.readBiases(".\\permFileLocs\\b_FINAL.txt");
+    denseLayer l1 = new denseLayer(a[0], b[0]);
+    denseLayer l2 = new denseLayer(a[1], b[1]);
     layerDerivs del = new layerDerivs(l1, l2);
     int count = 0;
 
@@ -19,9 +19,9 @@ public class trainingMultiFiles {
     
     
     for (String l:paths){
-      pair[] data = fileIO.readTrainingData(BATCHSIZE, l, -1);
+      pair<oneHotMatrix, matrix>[] data = fileIO.readTrainingData(BATCHSIZE, l, -1);
 
-      for (pair i:data){
+      for (pair<oneHotMatrix, matrix> i:data){
         
         count++;
         del.updateL1(l1);
@@ -76,7 +76,7 @@ public class trainingMultiFiles {
     fileIO.dumpData(
     new matrix[] {l1.getWeights(), l2.getWeights()}, 
     new rowVector[] {l1.getBias(), l2.getBias()},
-    ".\\permFileLocs\\w_HORIZONTAL.txt", ".\\permFileLocs\\b_HORIZONTAL.txt");
+    ".\\permFileLocs\\w_FINAL.txt", ".\\permFileLocs\\b_FINAL.txt");
     // ".\\permFileLocs\\w"+(l%2+2)+".txt", ".\\permFileLocs\\b"+(l%2+2)+".txt");
     //l2.derivativeWrtWeight(), lossCatCrossEntropy.derivativeWrtNet(l2.getOutput(), truth)
     // System.out.println(matrix.scalarMultiply(1, del.l2WrtWeight()));

@@ -39,10 +39,10 @@ public class model {
   public static void main(String[] args) {
     model model = new model(".\\permFileLocs\\w_HORIZONTAL.txt", ".\\permFileLocs\\b_HORIZONTAL.txt");
     final int BATCHSIZE = 50;
-    pair[] data = fileIO.readTrainingData(BATCHSIZE, ".\\datasets\\mnist_test.csv", -1);
+    pair<oneHotMatrix, matrix>[] data = fileIO.readTrainingData(BATCHSIZE, ".\\datasets\\mnist_test.csv", -1);
     int c = 0;
     int l=0;
-    for (pair i: data){
+    for (pair<oneHotMatrix, matrix> i: data){
       l++;
       float[][] t = i.getfirst().convertToArray();
       matrix d = i.getsecond();
