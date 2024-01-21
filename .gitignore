@@ -1,4 +1,8 @@
 .vscode
-test.java
 notes.md
 nextsteps.txt
+permFileLocs/*
+!permFileLocs/*FINAL.txt
+datasets/*
+!datasets/*.py
+test*.java
