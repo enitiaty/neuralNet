@@ -4,10 +4,11 @@ public class oneHot extends rowVector {
     super(10);
   }
 
-  public oneHot(int[] values){
-    super(oneHot.helper(values));
-
+  public oneHot(float[] arr){
+    super(arr);
   }
+
+
 
   public void assertTrue(int input){
     mat[0][input]=1;
@@ -17,15 +18,6 @@ public class oneHot extends rowVector {
     return utilities.find(mat[0], 1);
   }
 
-  public static float[] helper(int[] values){
 
-    float[] out = new float[10];
-
-    for (int i: values){
-      out[i]=1.0f;
-    }
-
-    return out;
-  }
   
 }

@@ -1,5 +1,5 @@
 public class delta {
-  // public static matrix dLayer(layer_dense layer, int layerC, matrix d, oneHot trueness;){
+  // public static matrix dLayer(denseLayer layer, int layerC, matrix d, oneHot trueness;){
   //   if (layerC == 0){
   //     return lossCatCrossEntropy.derivative(matrix, trueness);
   //   }
@@ -8,7 +8,7 @@ public class delta {
 
   // }
 
-  public static matrix delta1(layer_dense layer, oneHot trueness){
+  public static matrix delta1(denseLayer layer, oneHotMatrix trueness){
     return matrix.multiplyMatrix(lossCatCrossEntropy.derivativeWrtNet(layer.getOutput(), trueness), matrix.transpose(layer.getWeights()));
   }
 }
