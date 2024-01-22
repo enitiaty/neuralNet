@@ -1,3 +1,5 @@
+#Any script that modifies the training datasets goes here
+
 f = open(".\\datasets\\mnist_train.csv", 'r')
 w = open(".\\datasets\\mnist_trainALLSCALEDDOWN.csv", "w+")
 count=0
