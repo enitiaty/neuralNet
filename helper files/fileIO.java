@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 /**
  * A collection of methods to aid in writing and reading required data from csv files.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class fileIO {
@@ -21,9 +21,9 @@ public class fileIO {
    * @param biasPath
    * @throws IOException
    */
-  public static void dumpData(matrix[] weights, rowVector[] biases, String weightPath, String biasPath){
+  public static void dumpData(matrix[] weights, rowVector[] biases, String weightPath, String biasPath, boolean append){
     try{//Open weight file
-      FileWriter fw = new FileWriter(weightPath);
+      FileWriter fw = new FileWriter(weightPath, append);
       PrintWriter pw = new PrintWriter(fw);
       for (matrix i: weights){
         pw.write(i.toString()+"\n");//Converts each weight matrix to a string and writes it to the file
@@ -111,7 +111,26 @@ public class fileIO {
     }
     return out;//returns row vectors
   }
-
+  public static void writeTo(String path, matrix m){
+    try{
+      FileWriter fw = new FileWriter(path, true);
+      PrintWriter pw = new PrintWriter(fw);
+      pw.write(m.toString()+"\n");
+      // System.out.println("reached");
+      pw.close();
+    } catch (IOException e){
+      System.out.println("error: "+e);
+    }
+  }
+  public static void flushFile(String path){
+    try{//Open bias file
+      FileWriter fw = new FileWriter(path);
+      PrintWriter pw = new PrintWriter(fw);
+      pw.close();
+    } catch (IOException e){
+      System.out.println("error: "+e);
+    }
+  }
   /**
    * Reads a file to generate an array of truth matricies and array of input matricies.
    * @param batchSize

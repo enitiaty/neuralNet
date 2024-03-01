@@ -1,6 +1,6 @@
 /**
  * A class of misc functions that are used potentially only once.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class utilities {

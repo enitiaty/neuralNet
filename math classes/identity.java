@@ -1,6 +1,6 @@
 /**
  * Class for the nxn identity matrix.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class identity extends matrix{

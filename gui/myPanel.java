@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /**
  * Class for all panels and buttons in GUI.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class myPanel extends JPanel{

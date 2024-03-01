@@ -2,7 +2,7 @@ import java.lang.Math;
 
 /**
  * A class dedicated to calculating loss using categorical cross entropy.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class lossCatCrossEntropy implements loss {

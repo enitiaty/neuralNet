@@ -1,6 +1,6 @@
 /**
  * A class for One hot encoded vectors, an vector where all the elements are 0, except one 1 which represents the correct answer.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class oneHot extends rowVector {

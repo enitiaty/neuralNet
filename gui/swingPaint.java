@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 /**
  * A class for the JFrame.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class swingPaint{

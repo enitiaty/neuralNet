@@ -4,6 +4,8 @@ nextsteps.txt
 permFileLocs/*
 !permFileLocs/*FINAL.txt
 !permFileLocs/*copy.txt
+!permFileLocs/randomSeed.java
 datasets/*
 !datasets/*.py
 test*.java
+visualizations/*

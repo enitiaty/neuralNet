@@ -1,6 +1,6 @@
 /**
  * Class for derivative of Loss function with repect to each component of each layer.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class layerDerivs {

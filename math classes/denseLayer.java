@@ -1,15 +1,17 @@
 import java.lang.Math;
+import java.util.Random;
 
 /**
  * The actual layers in the NN.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
-public class denseLayer {
+public class denseLayer implements randomSeed{
   private matrix weights;
   private rowVector bias;
   private matrix output;
   private matrix inputs;
+  private Random generator = new Random(seed);
 
   /**
    * Constructor, randomizes weights and initializes biases to 0.
@@ -22,7 +24,7 @@ public class denseLayer {
 
     for (int i = 0; i < inputCount; i++){
       for (int j = 0; j < neuronCount; j++){
-        w[i][j]=(float)(Math.random()*2-1);//Randomizes weight array
+        w[i][j]=(float)(generator.nextDouble()*2-1);//Randomizes weight array
       }
     }
 

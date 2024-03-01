@@ -1,6 +1,6 @@
 /**
  * A class holding the information required for the actual NN model itself.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class model {

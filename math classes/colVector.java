@@ -1,6 +1,6 @@
 /**
  * A class for column vectors.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class colVector extends matrix {

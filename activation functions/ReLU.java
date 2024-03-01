@@ -1,6 +1,6 @@
 /**
  * Class for RectiLinear Unit activation function, used mainly in layer 1 of the network.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class ReLU implements activations {

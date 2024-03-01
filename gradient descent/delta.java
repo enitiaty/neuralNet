@@ -1,6 +1,6 @@
 /**
  * Stores the derivative with respect to net of each layer.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class delta {

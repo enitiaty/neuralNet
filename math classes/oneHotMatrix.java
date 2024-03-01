@@ -1,6 +1,6 @@
 /**
  * A class for a matrix whose rows are one hot encoded.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class oneHotMatrix extends matrix{

@@ -1,6 +1,6 @@
 /**
  * Custom java analogue to c++'s std::pair.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class pair<E, F> {

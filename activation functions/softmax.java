@@ -1,7 +1,7 @@
 import java.lang.Math;
 /**
  * Class for the softmax activation function, used to normalize the outputs from the second layer.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class softmax implements activations {

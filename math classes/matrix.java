@@ -1,7 +1,7 @@
 import java.util.Arrays;
 /**
  * A class for matricies and their operations.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class matrix {

@@ -1,6 +1,6 @@
 /**
  * A class for training the model based on a set number of EPOCHS.
- * @author Jimmy Zhang
+ * @author enitiaty
  * @since 2024-01-21
  */
 public class trainingEpochs {
@@ -75,7 +75,8 @@ public class trainingEpochs {
     fileIO.dumpData(//Dump data after each epoch to prevent data loss
     new matrix[] {l1.getWeights(), l2.getWeights()}, 
     new rowVector[] {l1.getBias(), l2.getBias()},
-    ".\\permFileLocs\\w_FINAL_copy.txt", ".\\permFileLocs\\b_FINAL_copy.txt");
+    ".\\permFileLocs\\w_FINAL_copy.txt", ".\\permFileLocs\\b_FINAL_copy.txt",
+    false);
   }
   fileIO.writeCoords(coords);
   System.out.println("done");
